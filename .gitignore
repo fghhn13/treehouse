@@ -1,0 +1,81 @@
+
+# Nana酱的魔法清单 V1.0 - 专为 Python + TypeScript + Vite + PyCharm 项目定制
+
+# 1. Python 相关的“杂物”
+####################################
+# Conda/Python 虚拟环境
+/venv/
+/env/
+/.venv/
+
+# Python 缓存文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# PyCharm IDE 配置文件 (非常重要，每个人的配置不一样，不应共享)
+.idea/
+
+# 打包和安装的产物
+/build/
+/dist/
+*.egg-info/
+*.egg
+*.whl
+
+# Jupyter Notebook 缓存
+.ipynb_checkpoints
+
+
+# 2. Node.js / Vite 前端相关的“杂物”
+####################################
+# 依赖库文件夹 (超级大！绝对不能上传！)
+node_modules/
+
+# Vite/VitePress 缓存
+.vite/
+.vite-temp/
+temp/
+
+# 前端项目编译后的产物 (我们只在部署时用到，源码才是核心)
+# 如果你的部署流程依赖于Git仓库里的dist，可以去掉这行
+/dist/
+
+# 日志文件
+npm-debug.log*
+yarn-error.log
+pnpm-debug.log*
+
+
+# 3. 操作系统和编辑器的“小秘密”
+####################################
+# macOS 系统文件
+.DS_Store
+
+# Windows 缩略图缓存
+Thumbs.db
+
+# VS Code 配置文件 (如果团队需要共享配置，可以自行解开注释)
+# .vscode/*
+# !.vscode/settings.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+
+# 编辑器临时文件
+*~
+*.swp
+*.swo
+
+
+# 4. 敏感信息和数据库文件
+####################################
+# 环境变量文件 (里面通常有密码、API Key等机密)
+.env
+.env.*
+!.env.example
+
+# 本地数据库文件 (比如SQLite)
+*.sqlite
+*.sqlite3
+*.db

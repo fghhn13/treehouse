@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TypeScript HTML App</title>
+  <style>
+    html, body {
+      overflow: hidden;
+      margin: 0;
+    }
+    html {
+      overscroll-behavior-x: none;
+      touch-action: none;
+    }
+    body {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    body > canvas:only-child {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+  <!-- Live2DCubismCore script -->
+  <script src = "./Core/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script type="module" crossorigin src="/assets/index-k9XdCo5c.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-C1l3c6xa.css">
+</head>
+<body>
+  <div id="app-container">
+
+    <div id="sidebar">
+      <h2 class="sidebar-title">操作面板</h2>
+      <p class="sidebar-text">未来可以在这里放置交互按钮、设置选项等。</p>
+      
+      <div id="nana-console">
+          <input type="text" id="commandInput" placeholder="输入JSON指令...">
+          <button id="sendCommand">发送指令</button>
+      </div>
+    </div>
+
+    <div id="character-view">
+      <div id="away-screen">
+          <p>Nana酱正在旅行中，稍后回来哦... ✈️</p>
+      </div>
+
+      <canvas id="live2d-canvas"></canvas>
+
+      <div id="subtitle-box"></div>
+    </div>
+
+  </div>
+</body>
+</html>
