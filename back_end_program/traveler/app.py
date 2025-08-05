@@ -71,7 +71,7 @@ async def switch_to_status(status: str):
 
     if status == "home":
         # 如果现在是回家状态，就计划一个随机时间后出门
-        delay = random.uniform(15, 30)  # 为了方便测试，暂时缩短在家时间
+        delay = random.uniform(150, 300)  # 为了方便测试，暂时缩短在家时间
         scheduler.add_job(switch_to_status, 'date',
                           run_date=datetime.datetime.now() + datetime.timedelta(seconds=delay), args=['away'],
                           id='life_cycle_switch')
@@ -143,7 +143,29 @@ async def websocket_endpoint(websocket: WebSocket):
     except WebSocketDisconnect:
         manager.disconnect(websocket)
         print("一个用户已断开连接")
+# --- [新添加] 保留的调试API接口 ---
+@app.get("/api/say")
+async def say_something(message: str):
+    if AGENT_STATUS == "home":
+        ai_script = await get_tongyi_response(message)
+        expression = ai_script.get("expression")
+        if expression in HAPPY_EXPRESSIONS:
+            ai_script["motion"] = "TapBody"
+        else:
+            ai_script["motion"] = "Idle"
+        response_command = {"type": "ai_response", "data": ai_script}
+        await manager.broadcast(json.dumps(response_command))
+        return {"status": "ok", "message_sent": message, "ai_response": ai_script}
+    else:
+        return {"status": "ignored", "reason": "Agent is away."}
 
+@app.get("/api/do_motion")
+async def do_motion():
+    """【保留功能】快速测试播放一个固定的动作。"""
+    print("【调试指令】收到do_motion请求")
+    command = {"type": "motion", "group": "TapBody"}
+    await manager.broadcast(json.dumps(command))
+    return {"status": "ok", "command_sent": command}
 
 # --- 7. 主函数与程序入口 ---
 def start_server(web_path: str, reload: bool):

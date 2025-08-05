@@ -7,7 +7,7 @@ import json
 
 # --- 配置 ---
 # 你的FastAPI后端地址
-API_URL = " http://0.0.0.0:8000/api/say"
+API_URL = "http://localhost:8000//api/say"
 
 
 # --- 核心功能 ---
